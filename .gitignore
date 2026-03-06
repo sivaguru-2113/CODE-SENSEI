@@ -1,0 +1,44 @@
+# ───────────────────────────────────────────────
+# Dependencies
+# ───────────────────────────────────────────────
+node_modules/
+backend/venv/
+backend/__pycache__/
+backend/engine/__pycache__/
+
+# ───────────────────────────────────────────────
+# Build outputs
+# ───────────────────────────────────────────────
+.next/
+out/
+vscode-extension/out/
+vscode-extension/node_modules/
+vscode-extension/*.vsix
+tsconfig.tsbuildinfo
+
+# ───────────────────────────────────────────────
+# Environment & secrets
+# ───────────────────────────────────────────────
+.env
+.env.local
+.env*.local
+backend/.env
+
+# ───────────────────────────────────────────────
+# IDE & OS
+# ───────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ───────────────────────────────────────────────
+# Misc
+# ───────────────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+next-env.d.ts
+pyrightconfig.json

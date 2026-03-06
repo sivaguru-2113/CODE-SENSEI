@@ -1,0 +1,111 @@
+{
+    "name": "code-sensei",
+    "displayName": "CODE-SENSEI",
+    "description": "AI-powered code mentor — analyzes your code, explains complexity, detects patterns, and teaches you to write better code.",
+    "version": "2.0.0",
+    "publisher": "code-sensei",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/code-sensei/code-sensei"
+    },
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": [
+        "Linters",
+        "Education",
+        "Other"
+    ],
+    "keywords": [
+        "code analysis",
+        "AI",
+        "mentor",
+        "complexity",
+        "code review"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "icon": "resources/icon.png",
+    "contributes": {
+        "commands": [
+            {
+                "command": "code-sensei.analyzeFile",
+                "title": "CODE-SENSEI: Analyze Current File",
+                "icon": "$(play)"
+            },
+            {
+                "command": "code-sensei.analyzeSelection",
+                "title": "CODE-SENSEI: Analyze Selection"
+            },
+            {
+                "command": "code-sensei.showPanel",
+                "title": "CODE-SENSEI: Show Results Panel"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "code-sensei.analyzeFile",
+                "key": "ctrl+shift+a",
+                "mac": "cmd+shift+a",
+                "when": "editorTextFocus"
+            }
+        ],
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "code-sensei-sidebar",
+                    "title": "CODE-SENSEI",
+                    "icon": "$(beaker)"
+                }
+            ]
+        },
+        "views": {
+            "code-sensei-sidebar": [
+                {
+                    "type": "webview",
+                    "id": "code-sensei.resultsView",
+                    "name": "Analysis Results",
+                    "icon": "resources/icon.png"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "CODE-SENSEI",
+            "properties": {
+                "codeSensei.backendUrl": {
+                    "type": "string",
+                    "default": "",
+                    "description": "URL of your deployed CODE-SENSEI backend (e.g. https://your-app.onrender.com). Leave empty to use local server."
+                },
+                "codeSensei.backendPort": {
+                    "type": "number",
+                    "default": 8777,
+                    "description": "Port for the local CODE-SENSEI backend (only used when backendUrl is empty)"
+                },
+                "codeSensei.pythonPath": {
+                    "type": "string",
+                    "default": "python",
+                    "description": "Path to Python executable (only used for local backend)"
+                },
+                "codeSensei.autoAnalyze": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically analyze on file save"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.85.0",
+        "@types/node": "^20.0.0",
+        "typescript": "^5.3.0"
+    }
+}
