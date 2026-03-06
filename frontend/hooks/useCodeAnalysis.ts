@@ -61,7 +61,8 @@ export function useCodeAnalysis() {
 
   const fetchHistory = async () => {
     try {
-      const response = await fetch('http://localhost:8000/history')
+      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'
+      const response = await fetch(`${baseUrl}/history`)
       if (response.ok) {
         const history = await response.json()
         setState(prev => ({ ...prev, history }))
@@ -80,7 +81,8 @@ export function useCodeAnalysis() {
     setState(prev => ({ ...prev, loading: true, error: null }))
 
     try {
-      const response = await fetch('http://localhost:8000/analyze', {
+      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'
+      const response = await fetch(`${baseUrl}/analyze`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +107,8 @@ export function useCodeAnalysis() {
 
   const clearHistory = useCallback(async () => {
     try {
-      await fetch('http://localhost:8000/history', { method: 'DELETE' })
+      const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'
+      await fetch(`${baseUrl}/history`, { method: 'DELETE' })
       setState(prev => ({ ...prev, history: [], result: null }))
     } catch (error) {
       console.error('Failed to clear history:', error)
