@@ -1,11 +1,14 @@
 'use client'
 
 import { SettingsProvider } from '@/frontend/components/SettingsContext'
+import { AuthProvider } from '@/frontend/components/AuthContext'
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
-        <SettingsProvider>
-            {children}
-        </SettingsProvider>
+        <AuthProvider>
+            <SettingsProvider>
+                {children}
+            </SettingsProvider>
+        </AuthProvider>
     )
 }

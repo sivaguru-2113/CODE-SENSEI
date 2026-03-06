@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X, LayoutDashboard, Code2, History, Zap } from 'lucide-react'
 import { LogoIcon } from '../LogoIcon'
+import { useAuth } from '@/frontend/components/AuthContext'
 
 const NAV_LINKS = [
     { label: 'Features', href: '#features' },
@@ -22,6 +23,7 @@ export function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [open, setOpen] = useState(false)
     const pathname = usePathname()
+    const { user } = useAuth()
 
     useEffect(() => {
         const fn = () => setScrolled(window.scrollY > 24)
@@ -90,12 +92,24 @@ export function Navbar() {
                             )
                         })}
 
-                        <Link
-                            href="/analyze"
-                            className="ml-2 glow-btn inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-[#00d4ff] to-[#6366f1] text-black text-sm font-bold rounded-lg shadow-lg shadow-cyan-500/20"
-                        >
-                            Start Free →
-                        </Link>
+                        {user ? (
+                            <Link
+                                href="/profile"
+                                className="ml-2 flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all"
+                            >
+                                <div className="w-6 h-6 rounded-full overflow-hidden border border-white/20 bg-white/5">
+                                    <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                                </div>
+                                <span className="max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
+                            </Link>
+                        ) : (
+                            <Link
+                                href="/login"
+                                className="ml-2 glow-btn inline-flex items-center gap-1.5 px-6 py-2 bg-gradient-to-r from-[#00d4ff] to-[#6366f1] text-black text-sm font-bold rounded-lg shadow-lg shadow-cyan-500/20 active:scale-95 transition-all"
+                            >
+                                Login →
+                            </Link>
+                        )}
                     </div>
 
                     {/* Mobile toggle */}
@@ -140,17 +154,53 @@ export function Navbar() {
                                     </Link>
                                 )
                             })}
-                            <Link
-                                href="/analyze"
-                                onClick={() => setOpen(false)}
-                                className="block mt-2 px-4 py-2.5 bg-gradient-to-r from-[#00d4ff] to-[#6366f1] text-black text-sm font-bold rounded-lg text-center"
-                            >
-                                Start Free →
-                            </Link>
+
+                            {user ? (
+                                <Link
+                                    href="/profile"
+                                    onClick={() => setOpen(false)}
+                                    className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-lg mt-2 transition-all"
+                                >
+                                    <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20 bg-white/5">
+                                        <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="flex-grow">
+                                        <div className="text-sm font-bold text-white shrink-0">{user.name}</div>
+                                        <div className="text-[10px] text-white/40 tracking-wider font-medium">VIEW PROFILE</div>
+                                    </div>
+                                    <ChevronRight size={14} className="text-white/20" />
+                                </Link>
+                            ) : (
+                                <Link
+                                    href="/login"
+                                    onClick={() => setOpen(false)}
+                                    className="block mt-2 px-4 py-2.5 bg-gradient-to-r from-[#00d4ff] to-[#6366f1] text-black text-sm font-bold rounded-lg text-center active:scale-95 transition-all"
+                                >
+                                    Login →
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
             )}
         </nav>
+    )
+}
+
+function ChevronRight({ size, className }: { size: number, className: string }) {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={className}
+        >
+            <path d="m9 18 6-6-6-6" />
+        </svg>
     )
 }
