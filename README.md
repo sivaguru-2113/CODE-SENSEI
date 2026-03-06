@@ -43,6 +43,8 @@ CODE-SENSEI/
 │   ├── analyze/page.tsx          # Code analysis workspace
 │   ├── dashboard/page.tsx        # Analytics dashboard
 │   ├── history/page.tsx          # Analysis history
+│   ├── login/page.tsx            # Real Auth Login (NextAuth)
+│   ├── profile/page.tsx          # User Mastery Profile
 │   └── settings/page.tsx         # User preferences
 │
 ├── components/                   # UI Components
@@ -106,6 +108,8 @@ cp .env.example .env
 ```bash
 cd ..
 npm install
+# The frontend uses the root .env for NextAuth
+# Ensure NEXTAUTH_SECRET and GOOGLE_CLIENT_ID are set (see docs/google_oauth_setup.md)
 ```
 
 ### 4. Run both servers

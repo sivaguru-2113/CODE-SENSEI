@@ -4,20 +4,28 @@ Analyze code directly inside VS Code with the full CODE-SENSEI pipeline.
 
 ## Features
 
-- **Ctrl+Shift+A** — Analyze the current file
-- **Sidebar panel** — Score ring, metrics, issues, AI explanation
-- **Inline diagnostics** — Issues as squiggly underlines in the editor
-- **Status bar** — Live score after analysis
-- **Auto-analyze on save** — Optional
+- **🚀 Instant Analysis** (`Ctrl+Shift+A`) — Analyze the current file through the 7-stage pipeline.
+- **📊 Interactive Sidebar** — Real-time score ring, 5-dimension metrics, and 12-rule pattern matching.
+- **🤖 AI Mentorship** — Get structured explanations and fix suggestions directly in your IDE.
+- **🔍 Inline Squiggles** — See code smells and anti-patterns highlighed in the editor (Diagnostics).
+- **📉 Live Status Bar** — Transparent health score of your code visible at all times.
 
-## Install from Source
+## Installation (.vsix)
 
-```bash
-npm install
-npm run compile
-npx @vscode/vsce package --allow-missing-repository
-code --install-extension code-sensei-2.0.0.vsix
-```
+1. Ensure you have **Node.js** and **npm** installed.
+2. Build the extension:
+   ```bash
+   npm install
+   npm run compile
+   ```
+3. Package it:
+   ```bash
+   npx @vscode/vsce package --allow-missing-repository
+   ```
+4. Install in VS Code:
+   ```bash
+   code --install-extension code-sensei-2.0.0.vsix
+   ```
 
 ## Development
 

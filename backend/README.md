@@ -2,6 +2,9 @@
 
 FastAPI-powered analysis engine with a 7-stage modular pipeline.
 
+> [!NOTE]
+> Authentication is handled by the Frontend via **NextAuth.js**. The backend remains stateless and focused on high-performance AST analysis.
+
 ## Setup
 
 ```bash
