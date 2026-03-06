@@ -5,8 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
     LayoutDashboard, Code2, BarChart2, History,
-    Settings, Zap, ChevronRight, Home, Search,
-    Bell, User
+    Settings, Zap, ChevronRight, Home, Search
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BackgroundMotion } from '@/components/background-motion'
@@ -123,10 +122,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <button className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-all relative">
-                            <Bell size={18} />
-                            <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-[#0d0d14]" />
-                        </button>
                     </div>
                 </header>
 
