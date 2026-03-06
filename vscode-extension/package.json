@@ -7,7 +7,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/code-sensei/code-sensei"
+        "url": "https://github.com/sivaguru-2113/CODE-SENSEI"
     },
     "engines": {
         "vscode": "^1.85.0"
