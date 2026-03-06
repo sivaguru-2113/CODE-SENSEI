@@ -127,18 +127,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                             <Bell size={18} />
                             <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-[#0d0d14]" />
                         </button>
-                        <div className="h-8 w-px bg-[#1e1e2a] mx-1" />
-                        <Link href="/settings" className="flex items-center gap-3 cursor-pointer group">
-                            <div className="text-right hidden xs:block">
-                                <div className="text-xs font-bold text-white group-hover:text-[#00d4ff] transition-colors uppercase tracking-tight">
-                                    Code User
-                                </div>
-                                <div className="text-[10px] text-slate-500">Master Tier</div>
-                            </div>
-                            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#1e1e2a] to-[#2a2a3a] border border-[#3a3a4a] flex items-center justify-center group-hover:border-[#00d4ff]/40 transition-all overflow-hidden">
-                                <User size={18} className="text-slate-400 group-hover:text-[#00d4ff]" />
-                            </div>
-                        </Link>
                     </div>
                 </header>
 
