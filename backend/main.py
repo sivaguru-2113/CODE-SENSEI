@@ -3,20 +3,28 @@
 CODE-SENSEI Backend — FastAPI Application
 Slim API layer that delegates all analysis to the modular engine pipeline.
 """
+import os
 from fastapi import FastAPI, HTTPException  # type: ignore
 from fastapi.middleware.cors import CORSMiddleware  # type: ignore
 from typing import List
+from dotenv import load_dotenv
 
 from engine.models import CodeAnalysisResult, AnalyzeRequest
 from engine.pipeline import run_analysis
+
+# Load environment variables
+load_dotenv()
 
 # ── App Setup ────────────────────────────────────────────────
 
 app = FastAPI(title="CodeSensei Backend", version="2.0.0")
 
+# Production-ready CORS
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -66,4 +74,6 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn  # type: ignore
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Use PORT from environment (for Render/Heroku/etc)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
