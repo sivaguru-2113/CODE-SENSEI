@@ -22,6 +22,7 @@ and generates AI-powered explanations — all in real time.
 ## ✨ Features
 
 - **🧠 7-Stage Analysis Pipeline** — Preprocessing → AST Parsing → Static Analysis → Complexity Detection → Pattern Matching → AI Explanation → Quality Scoring
+- **Secure Authentication**: NextAuth.js with Google & Credentials support. [Setup Guide](docs/google_oauth_setup.md)
 - **📊 Big-O Complexity Estimation** — Automatic time and space complexity detection with algorithm recognition
 - **🔍 12 Code Smell Rules** — Detects anti-patterns like sort-in-loop, mutable defaults, hardcoded credentials
 - **🤖 AI-Powered Explanations** — Structured mentor-style explanations using Qwen3 Coder via OpenRouter
