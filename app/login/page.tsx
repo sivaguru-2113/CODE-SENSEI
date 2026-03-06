@@ -12,7 +12,7 @@ export default function LoginPage() {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const { login } = useAuth()
+    const { login, loginWithGoogle } = useAuth()
     const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -20,7 +20,6 @@ export default function LoginPage() {
         setIsSubmitting(true)
         try {
             await login(email, name || 'Sensei User')
-            router.push('/analyze')
         } catch (err) {
             console.error(err)
         } finally {
@@ -30,8 +29,13 @@ export default function LoginPage() {
 
     const handleSocialLogin = async () => {
         setIsSubmitting(true)
-        await login('github-user@example.com', 'GitHub Sensei')
-        router.push('/analyze')
+        try {
+            await loginWithGoogle()
+        } catch (err) {
+            console.error(err)
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (

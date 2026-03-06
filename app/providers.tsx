@@ -2,13 +2,16 @@
 
 import { SettingsProvider } from '@/frontend/components/SettingsContext'
 import { AuthProvider } from '@/frontend/components/AuthContext'
+import { SessionProvider } from 'next-auth/react'
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
-        <AuthProvider>
-            <SettingsProvider>
-                {children}
-            </SettingsProvider>
-        </AuthProvider>
+        <SessionProvider>
+            <AuthProvider>
+                <SettingsProvider>
+                    {children}
+                </SettingsProvider>
+            </AuthProvider>
+        </SessionProvider>
     )
 }
