@@ -22,7 +22,6 @@ and generates AI-powered explanations — all in real time.
 ## ✨ Features
 
 - **🧠 7-Stage Analysis Pipeline** — Preprocessing → AST Parsing → Static Analysis → Complexity Detection → Pattern Matching → AI Explanation → Quality Scoring
-- **Secure Authentication**: NextAuth.js with Google & Credentials support. [Setup Guide](docs/google_oauth_setup.md)
 - **📊 Big-O Complexity Estimation** — Automatic time and space complexity detection with algorithm recognition
 - **🔍 12 Code Smell Rules** — Detects anti-patterns like sort-in-loop, mutable defaults, hardcoded credentials
 - **🤖 AI-Powered Explanations** — Structured mentor-style explanations using Qwen3 Coder via OpenRouter
@@ -43,8 +42,6 @@ CODE-SENSEI/
 │   ├── analyze/page.tsx          # Code analysis workspace
 │   ├── dashboard/page.tsx        # Analytics dashboard
 │   ├── history/page.tsx          # Analysis history
-│   ├── login/page.tsx            # Real Auth Login (NextAuth)
-│   ├── profile/page.tsx          # User Mastery Profile
 │   └── settings/page.tsx         # User preferences
 │
 ├── components/                   # UI Components
@@ -108,8 +105,6 @@ cp .env.example .env
 ```bash
 cd ..
 npm install
-# The frontend uses the root .env for NextAuth
-# Ensure NEXTAUTH_SECRET and GOOGLE_CLIENT_ID are set (see docs/google_oauth_setup.md)
 ```
 
 ### 4. Run both servers

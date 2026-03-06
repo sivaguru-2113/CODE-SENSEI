@@ -12,7 +12,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { BackgroundMotion } from '@/components/background-motion'
 import { LogoIcon } from '@/components/LogoIcon'
 import { useSettings } from './SettingsContext'
-import { useAuth } from './AuthContext'
 
 /* ── Sidebar nav config ──────────────────────────────────── */
 const NAV = [
@@ -20,7 +19,6 @@ const NAV = [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/analyze', label: 'Analyze Code', icon: Code2 },
     { href: '/history', label: 'History', icon: History },
-    { href: '/profile', label: 'My Profile', icon: User },
     { href: '/settings', label: 'Settings', icon: Settings },
 ]
 
@@ -32,7 +30,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     const [collapsed, setCollapsed] = useState(false)
     const pathname = usePathname()
     const { settings } = useSettings()
-    const { user, logout } = useAuth()
     const compact = settings.compactMode
     const animate = settings.animationsEnabled
 
@@ -96,15 +93,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
                 {/* User / Bottom Section */}
                 <div className="p-3 border-t border-[#1e1e2a] space-y-1">
-                    {user && (
-                        <button
-                            onClick={logout}
-                            className="w-full flex items-center gap-3.5 px-3 py-3 rounded-xl text-red-400/70 hover:text-red-400 hover:bg-red-500/5 transition-all group"
-                        >
-                            <Zap size={18} className="shrink-0 group-hover:scale-110 transition-transform" />
-                            {!collapsed && <span className="text-sm font-medium">Logout</span>}
-                        </button>
-                    )}
                     <button
                         onClick={() => setCollapsed(!collapsed)}
                         className="w-full flex items-center gap-3.5 px-3 py-3 rounded-xl text-slate-500 hover:text-white hover:bg-white/[0.03] transition-all group"
@@ -140,19 +128,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                             <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-[#0d0d14]" />
                         </button>
                         <div className="h-8 w-px bg-[#1e1e2a] mx-1" />
-                        <Link href="/profile" className="flex items-center gap-3 cursor-pointer group">
+                        <Link href="/settings" className="flex items-center gap-3 cursor-pointer group">
                             <div className="text-right hidden xs:block">
                                 <div className="text-xs font-bold text-white group-hover:text-[#00d4ff] transition-colors uppercase tracking-tight">
-                                    {user?.name || 'Guest User'}
+                                    Code User
                                 </div>
-                                <div className="text-[10px] text-slate-500">{user ? 'Master Tier' : 'Guest Tier'}</div>
+                                <div className="text-[10px] text-slate-500">Master Tier</div>
                             </div>
                             <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#1e1e2a] to-[#2a2a3a] border border-[#3a3a4a] flex items-center justify-center group-hover:border-[#00d4ff]/40 transition-all overflow-hidden">
-                                {user?.avatar ? (
-                                    <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
-                                ) : (
-                                    <User size={18} className="text-slate-400 group-hover:text-[#00d4ff]" />
-                                )}
+                                <User size={18} className="text-slate-400 group-hover:text-[#00d4ff]" />
                             </div>
                         </Link>
                     </div>
