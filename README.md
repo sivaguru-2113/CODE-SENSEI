@@ -13,9 +13,16 @@
 It analyzes your code structurally, detects patterns and anti-patterns, estimates Big-O complexity,
 and generates AI-powered explanations — all in real time.
 
-[Live Demo](#) · [VS Code Extension](#vs-code-extension) · [Documentation](#architecture)
+[Live Demo](https://code-sensei-xai.vercel.app/) · [VS Code Extension](#vs-code-extension) · [Documentation](#architecture)
 
 </div>
+
+---
+
+## 🌎 Live Deployment
+
+Experience CODE-SENSEI immediately in your browser:  
+🔗 **[code-sensei-xai.vercel.app](https://code-sensei-xai.vercel.app/)**
 
 ---
 
