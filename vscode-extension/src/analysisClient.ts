@@ -49,7 +49,7 @@ export class AnalysisClient {
         const body = JSON.stringify({ code, language });
 
         return new Promise((resolve, reject) => {
-            const url = new URL(`${this.baseUrl}/analyze`);
+            const url = new URL(`${this.baseUrl}/api/analyze`);
             const isHttps = url.protocol === 'https:';
             const client = isHttps ? https : http;
 

@@ -36,8 +36,8 @@ analysis_history: List[CodeAnalysisResult] = []
 
 # ── Routes ───────────────────────────────────────────────────
 
-@app.post("/analyze", response_model=CodeAnalysisResult)
-async def analyze_code(request: AnalyzeRequest):
+@app.post("/api/analyze", response_model=CodeAnalysisResult)
+async def analyze_code_endpoint(request: AnalyzeRequest):
     """Run the full CODE-SENSEI analysis pipeline on submitted code."""
     try:
         result = run_analysis(request.code, request.language)
@@ -51,20 +51,20 @@ async def analyze_code(request: AnalyzeRequest):
         raise HTTPException(status_code=500, detail=f"Engine Error: {str(e)}")
 
 
-@app.get("/history", response_model=List[CodeAnalysisResult])
+@app.get("/api/history", response_model=List[CodeAnalysisResult])
 async def get_history():
     """Return all past analysis results."""
     return analysis_history
 
 
-@app.delete("/history")
+@app.delete("/api/history")
 async def clear_history():
     """Clear all analysis history."""
     analysis_history.clear()
     return {"message": "History cleared"}
 
 
-@app.get("/health")
+@app.get("/api/health")
 async def health_check():
     """Health check endpoint."""
     return {"status": "ok", "engine": "CODE-SENSEI v2.0 — Hybrid AST + AI Pipeline"}

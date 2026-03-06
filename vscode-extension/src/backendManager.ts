@@ -128,7 +128,7 @@ export class BackendManager {
     }
 
     private healthCheck(): Promise<boolean> {
-        const url = `${this.baseUrl}/health`;
+        const url = `${this.baseUrl}/api/health`;
         const isHttps = url.startsWith('https');
         const client = isHttps ? https : http;
 
